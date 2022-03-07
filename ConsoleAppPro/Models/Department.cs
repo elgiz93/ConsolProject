@@ -93,8 +93,12 @@ namespace ConsoleAppPro.Models
         }
         public void AddEmployee(string fullname, string position, double salary, string departamentname)
         {
-            if (Employees.Length <= WorkerLimit)
+            if (Employees.Length >= WorkerLimit)
             {
+                Console.WriteLine("Departmentde yeni ishci elave etmek ucun yer yoxdur!");
+                return;
+            }
+
                 while (salary > (SalaryLimit - Employees.Length * CalcSalaryAverage()))
                 {
                     Console.WriteLine($"SalaryLimit nezere alsaq Salary max {SalaryLimit - Employees.Length * CalcSalaryAverage()} ola biler!");
@@ -114,12 +118,9 @@ namespace ConsoleAppPro.Models
                 Array.Resize(ref Employees, Employees.Length + 1);
                 Employees[Employees.Length - 1] = new Employee(fullname, position, salary, departamentname);
                 Console.WriteLine("Employee ugurla elave edildi!");
-                return;
-            }
-            else
-            {
-                Console.WriteLine("Departmentde yeni ishci elave etmek ucun yer yoxdur!");
-            }
+                
+            
+
         }
 
         public override string ToString()

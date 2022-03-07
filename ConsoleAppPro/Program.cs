@@ -211,26 +211,30 @@ namespace ConsoleAppPro
                     Console.WriteLine("Department movcud deyil! Ilk once Department yaradin!");
                     return;
                 }
-                foreach (Department depa in humanresourcemanager.Departments)
-                { Console.WriteLine($"{depa}"); }
+                ShowDepartments(ref humanresourcemanager);
 
                 Console.WriteLine("Ishcini elave etmek istediyiniz Department adini daxil edin!");
                 string department = Console.ReadLine().Trim().ToUpper();
+                foreach (Department item in humanresourcemanager.Departments)
+                    if (item.Name == department)
+                    {
+                        Console.WriteLine("Yeni ishcinin adini qeyd edin!");
+                        string fullname = Console.ReadLine().Trim().ToUpper();
 
-                Console.WriteLine("Yeni ishcinin adini qeyd edin!");
-                string fullname = Console.ReadLine().Trim().ToUpper();
+                        Console.WriteLine("Yeni ishcinin maasini qeyd edin! Min 250AZN olmalidir!");
+                        double salary = 0;
+                        while (!double.TryParse(Console.ReadLine(), out salary) || salary<250)
+                        {
+                            Console.WriteLine("Duzugun deyer edin!");
+                        }
 
-                Console.WriteLine("Yeni ishcinin maasini qeyd edin!");
-                double salary = 0;
-                while (!double.TryParse(Console.ReadLine(), out salary))
-                {
-                    Console.WriteLine("Duzugun deyer edin!");
-                }
+                        Console.WriteLine("Yeni ishcinin pozisiyasini qeyd edin!");
+                        string position = Console.ReadLine().Trim().ToUpper();
 
-                Console.WriteLine("Yeni ishcinin pozisiyasini qeyd edin!");
-                string position = Console.ReadLine().Trim().ToUpper();
-
-                humanresourcemanager.AddEmployee(fullname, position, salary, department);
+                        humanresourcemanager.AddEmployee(fullname, position, salary, department);
+                        return;
+                    }
+                Console.WriteLine("Daxil edilen adda department yoxdur!");
 
             }
             static void EditEmployee(ref HumanResourceManager humanresourcemanager)

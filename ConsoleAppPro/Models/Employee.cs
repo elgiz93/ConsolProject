@@ -22,7 +22,7 @@ namespace ConsoleAppPro.Models
                     Console.ResetColor();
                     value = Console.ReadLine().Trim().ToUpper();
                 }
-                _position = value.ToUpper();
+                _position = value.Trim().ToUpper();
             }
         }
         private double _salary;
