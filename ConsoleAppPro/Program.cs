@@ -73,7 +73,7 @@ namespace ConsoleAppPro
                         return;
                 }
 
-            } while (true);
+           
 
 
             static void ShowDepartments(ref HumanResourceManager humanresourcemanager)
@@ -312,6 +312,7 @@ namespace ConsoleAppPro
                 Console.WriteLine("Daxil edilen adda department yoxdur");
 
             }
+           } while (true);
         }
     }
 }
